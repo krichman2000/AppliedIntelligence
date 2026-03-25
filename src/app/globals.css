@@ -1,26 +1,51 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-serif: var(--font-libre-baskerville);
+  --font-sans: var(--font-dm-sans);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-cream: #FDFCFA;
+  --color-charcoal: #1a1a1a;
+  --color-muted: #8B8680;
+  --color-muted-light: #A09A94;
+  --color-body: #5A5650;
+  --color-border: #E5E1D8;
+  --color-gold: #C8A96E;
+  --color-gold-dark: #B89A5E;
+  --color-accent: #E8456B;
+
+  /* Topic colors */
+  --color-topic-infrastructure: #3B82F6;
+  --color-topic-infrastructure-bg: #EFF6FF;
+  --color-topic-infrastructure-border: #BFDBFE;
+
+  --color-topic-finance: #059669;
+  --color-topic-finance-bg: #ECFDF5;
+  --color-topic-finance-border: #A7F3D0;
+
+  --color-topic-healthcare: #DC2626;
+  --color-topic-healthcare-bg: #FEF2F2;
+  --color-topic-healthcare-border: #FECACA;
+
+  --color-topic-work: #0891B2;
+  --color-topic-work-bg: #ECFEFF;
+  --color-topic-work-border: #A5F3FC;
+
+  --color-topic-strategy: #7C3AED;
+  --color-topic-strategy-bg: #F5F3FF;
+  --color-topic-strategy-border: #DDD6FE;
+
+  --color-topic-jobs: #D97706;
+  --color-topic-jobs-bg: #FFFBEB;
+  --color-topic-jobs-border: #FDE68A;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  color: var(--color-charcoal);
+  background: var(--color-cream);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
 }
