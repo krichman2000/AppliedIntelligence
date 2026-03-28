@@ -16,6 +16,7 @@ export type Episode = {
   topics: string[];
   featured?: boolean;
   photo?: string;
+  youtubeId?: string;
 };
 
 export const topics: Topic[] = [
@@ -39,6 +40,8 @@ export const episodes: Episode[] = [
     date: "Mar 24, 2026",
     topics: ["AI in Finance", "AI Strategy"],
     featured: true,
+    photo: "/guests/Anthony-Soohoo.jpeg",
+    youtubeId: "YXGP07vtFMc",
   },
   {
     id: 2,
@@ -50,6 +53,8 @@ export const episodes: Episode[] = [
     duration: "48:15",
     date: "Mar 17, 2026",
     topics: ["AI Infrastructure", "AI Strategy"],
+    photo: "/guests/Fredrik-Hjelm.png",
+    youtubeId: "p5Y4jQkKdqY",
   },
   {
     id: 3,
@@ -61,6 +66,8 @@ export const episodes: Episode[] = [
     duration: "51:20",
     date: "Mar 10, 2026",
     topics: ["AI in Healthcare"],
+    photo: "/guests/Sokratis-Papafloratos.png",
+    youtubeId: "xohuren94vY",
   },
   {
     id: 4,
@@ -72,6 +79,8 @@ export const episodes: Episode[] = [
     duration: "44:50",
     date: "Mar 3, 2026",
     topics: ["AI Strategy", "AI at Work"],
+    photo: "/guests/Brendan-Falk.jpeg",
+    youtubeId: "uPJNY3mSwVI",
   },
   {
     id: 5,
@@ -83,6 +92,8 @@ export const episodes: Episode[] = [
     duration: "44:36",
     date: "Feb 24, 2026",
     topics: ["AI at Work", "AI Strategy"],
+    photo: "/guests/Jason-Robinovitz.jpeg",
+    youtubeId: "EPBP7qrFaKc",
   },
   {
     id: 6,
@@ -94,6 +105,7 @@ export const episodes: Episode[] = [
     duration: "55:00",
     date: "Feb 17, 2026",
     topics: ["AI Strategy", "AI in Finance"],
+    youtubeId: "j09QMR57xLQ",
   },
 ];
 

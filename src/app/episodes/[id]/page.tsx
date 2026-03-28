@@ -50,19 +50,29 @@ export default async function EpisodeDetailPage({ params }: Props) {
         {episode.date} &middot; {episode.duration}
       </p>
 
-      {/* Video player placeholder */}
-      <div className="w-full h-[360px] bg-[#111] rounded-xl mb-8 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 rounded-full bg-white/15 flex items-center justify-center mx-auto mb-3">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </div>
-          <span className="text-white/50 text-[13px]">
-            YouTube player embed
-          </span>
+      {/* YouTube video embed */}
+      {episode.youtubeId ? (
+        <div className="w-full aspect-video rounded-xl mb-8 overflow-hidden">
+          <iframe
+            src={`https://www.youtube.com/embed/${episode.youtubeId}`}
+            title={episode.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full"
+          />
         </div>
-      </div>
+      ) : (
+        <div className="w-full h-[360px] bg-[#111] rounded-xl mb-8 flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-16 h-16 rounded-full bg-white/15 flex items-center justify-center mx-auto mb-3">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+            <span className="text-white/50 text-[13px]">Video coming soon</span>
+          </div>
+        </div>
+      )}
 
       {episode.description && (
         <p className="text-base text-body leading-relaxed mb-8">

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function AboutPage() {
   return (
     <div className="py-12">
@@ -26,8 +28,14 @@ export default function AboutPage() {
         The host
       </h2>
       <div className="flex gap-6 items-start flex-wrap">
-        <div className="w-[120px] h-[120px] rounded-xl bg-[#F5F3EE] flex-shrink-0 flex items-center justify-center">
-          <span className="font-serif text-[40px] text-gold">K</span>
+        <div className="w-[120px] h-[120px] rounded-xl overflow-hidden flex-shrink-0">
+          <Image
+            src="/guests/bm_09-Keith-Richman_0554.jpg"
+            alt="Keith Richman"
+            width={120}
+            height={120}
+            className="w-full h-full object-cover"
+          />
         </div>
         <div className="flex-1 min-w-[260px]">
           <p className="text-base text-body leading-relaxed mb-3">

@@ -22,6 +22,8 @@ export function FeaturedEpisode({ episode }: Props) {
                 src={episode.photo}
                 alt={episode.guest}
                 fill
+                sizes="320px"
+                priority
                 className="object-cover"
               />
             )}
