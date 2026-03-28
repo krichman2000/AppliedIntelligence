@@ -40,6 +40,7 @@ export const episodes: Episode[] = [
     date: "Mar 24, 2026",
     topics: ["AI Strategy", "AI in Finance"],
     featured: true,
+    photo: "/guests/McMillan.webp",
     youtubeId: "j09QMR57xLQ",
   },
   {
