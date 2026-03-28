@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { episodes, topics, getTopicByName } from "@/data/episodes";
+import { Metadata } from "next";
+import { episodes, getTopicByName } from "@/data/episodes";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -10,6 +11,49 @@ export function generateStaticParams() {
   return episodes.map((ep) => ({
     id: String(ep.id),
   }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const episode = episodes.find((ep) => ep.id === Number(id));
+
+  if (!episode) {
+    return {
+      title: "Episode Not Found | Applied Intelligence",
+    };
+  }
+
+  const title = `${episode.guest} on ${episode.title} | Applied Intelligence`;
+  const description =
+    episode.description ||
+    `${episode.guest}, ${episode.guestTitle}, joins Applied Intelligence to discuss ${episode.title.toLowerCase()}.`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url: `https://appliedintelligence.fm/episodes/${episode.id}`,
+      images: episode.photo
+        ? [
+            {
+              url: episode.photo,
+              width: 400,
+              height: 400,
+              alt: episode.guest,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: episode.photo ? [episode.photo] : undefined,
+    },
+  };
 }
 
 export default async function EpisodeDetailPage({ params }: Props) {

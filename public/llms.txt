@@ -1,0 +1,35 @@
+# Applied Intelligence Podcast
+# https://appliedintelligence.fm
+
+## About
+Applied Intelligence is a podcast about what happens when senior leaders actually try to implement AI in their organizations. Not the hype, not the theory — the real stories of what works, what doesn't, and what keeps them up at night.
+
+## Host
+Keith Richman - Serial entrepreneur and digital media operator who runs a portfolio of brands across eCommerce, content, and supplements. He's been building online businesses since the early days of the internet and is now fully AI-native.
+
+## Content
+Each episode features an in-depth conversation with a Fortune 500 executive, Chief AI Officer, or AI company founder who's in the trenches making billion-dollar bets on artificial intelligence.
+
+## Topics Covered
+- AI Infrastructure
+- AI in Finance
+- AI in Healthcare
+- AI at Work
+- AI Strategy
+- AI & Jobs
+
+## Recent Guests
+- Jeff McMillan, Founder of McMillan AI (former Head of Firmwide AI at Morgan Stanley)
+- Anthony Soohoo, CEO of MoneyGram
+- Fredrik Hjelm, CEO of Voi Technology
+- Sokratis Papafloratos, CEO of Numan
+- Brendan Falk, CEO of Hercules App
+- Jason Robinovitz, COO of Score at the Top
+
+## Available On
+- YouTube: youtube.com/@AppliedIntelligencePod
+- Spotify
+- Apple Podcasts
+
+## Contact
+For guest inquiries, visit: https://appliedintelligence.fm/guests/apply
