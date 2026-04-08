@@ -13,7 +13,7 @@ export function FeaturedEpisode({ episode }: Props) {
         Latest Episode
         <span className="inline-block w-8 h-0.5 bg-gold"></span>
       </h2>
-      <div className="flex gap-10 flex-wrap">
+      <div className="flex gap-10 flex-wrap items-start">
         {/* Episode Card */}
         <div className="w-80 min-w-[280px] rounded-xl overflow-hidden bg-white shadow-lg flex-shrink-0">
           <div className="relative w-full h-60 overflow-hidden">
