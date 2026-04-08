@@ -17,6 +17,7 @@ export type Episode = {
   featured?: boolean;
   photo?: string;
   youtubeId?: string;
+  transcript?: string;
 };
 
 export const topics: Topic[] = [
@@ -26,9 +27,24 @@ export const topics: Topic[] = [
   { name: "AI at Work", color: "#0891B2", bg: "#ECFEFF", border: "#A5F3FC" },
   { name: "AI Strategy", color: "#7C3AED", bg: "#F5F3FF", border: "#DDD6FE" },
   { name: "AI & Jobs", color: "#D97706", bg: "#FFFBEB", border: "#FDE68A" },
+  { name: "AI in Lending", color: "#DB2777", bg: "#FDF2F8", border: "#FBCFE8" },
 ];
 
 export const episodes: Episode[] = [
+  {
+    id: 7,
+    title: "Employees as Air Traffic Controllers: Rethinking Work in the AI Era",
+    guest: "Sergio Furio",
+    guestTitle: "CEO, Creditas",
+    description:
+      "Sergio Furio, CEO of Creditas, joins Keith Richman to discuss how AI is fundamentally transforming his Brazilian fintech company. In this episode of Applied Intelligence, Sergio reveals how transitioning from traditional apps to 24/7 AI conversational agents is revolutionizing the customer experience and loan underwriting. He details how Creditas automated 85 complex legal risk assessments for collateralized lending and drastically boosted employee productivity—allowing the company to grow 30% annually while halving its overall headcount. Sergio also shares how AI platforms like Claude, Perplexity, and Notion are shifting company culture, turning traditional managers into hands-on "builders" who can execute end-to-end. If you want to know what real-world AI deployment looks like at a massive scale, this is a must-listen.",
+    duration: "34:24",
+    date: "Apr 8, 2026",
+    topics: ["AI in Finance", "AI in Lending", "AI Strategy", "AI & Jobs"],
+    featured: true,
+    photo: "/guests/Sergio-Furio.jpg",
+    youtubeId: "VDeyqsO_sgs",
+  },
   {
     id: 1,
     title: "Enterprise AI: From Experimentation to Implementation",
@@ -39,7 +55,6 @@ export const episodes: Episode[] = [
     duration: "55:00",
     date: "Mar 24, 2026",
     topics: ["AI Strategy", "AI in Finance"],
-    featured: true,
     photo: "/guests/McMillan.webp",
     youtubeId: "j09QMR57xLQ",
   },

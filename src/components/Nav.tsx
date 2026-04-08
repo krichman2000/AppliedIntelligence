@@ -35,6 +35,12 @@ export function Nav() {
           </Link>
         ))}
       </div>
+      <Link
+        href="/guests/apply"
+        className="px-4 py-2 bg-gold text-white text-[14px] font-medium rounded-lg hover:bg-gold-dark transition-colors"
+      >
+        Be a Guest
+      </Link>
     </nav>
   );
 }

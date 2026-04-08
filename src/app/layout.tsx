@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://appliedintelligence.fm"),
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
   },
   openGraph: {
     type: "website",

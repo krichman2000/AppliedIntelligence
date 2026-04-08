@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { episodes, getTopicByName } from "@/data/episodes";
 import { notFound } from "next/navigation";
+import { TranscriptSection } from "@/components/TranscriptSection";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -143,6 +144,10 @@ export default async function EpisodeDetailPage({ params }: Props) {
             ) : null;
           })}
         </div>
+      )}
+
+      {episode.transcript && (
+        <TranscriptSection transcript={episode.transcript} />
       )}
     </div>
   );

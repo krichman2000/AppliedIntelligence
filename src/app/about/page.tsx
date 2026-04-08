@@ -1,4 +1,27 @@
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "About | Applied Intelligence",
+  description:
+    "Learn about Applied Intelligence podcast and host Keith Richman. Real stories about what works when implementing AI in organizations.",
+  openGraph: {
+    title: "About | Applied Intelligence",
+    description:
+      "Learn about Applied Intelligence podcast and host Keith Richman. Real stories about what works when implementing AI in organizations.",
+    url: "https://appliedintelligence.fm/about",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About | Applied Intelligence",
+    description:
+      "Learn about Applied Intelligence podcast and host Keith Richman. Real stories about what works when implementing AI in organizations.",
+  },
+  alternates: {
+    canonical: "/about",
+  },
+};
 
 export default function AboutPage() {
   return (

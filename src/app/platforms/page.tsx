@@ -1,3 +1,27 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Platforms | Applied Intelligence",
+  description:
+    "Subscribe and follow Applied Intelligence on YouTube, Spotify, Apple Podcasts, TikTok, and more.",
+  openGraph: {
+    title: "Platforms | Applied Intelligence",
+    description:
+      "Subscribe and follow Applied Intelligence on YouTube, Spotify, Apple Podcasts, TikTok, and more.",
+    url: "https://appliedintelligence.fm/platforms",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Platforms | Applied Intelligence",
+    description:
+      "Subscribe and follow Applied Intelligence on YouTube, Spotify, Apple Podcasts, TikTok, and more.",
+  },
+  alternates: {
+    canonical: "/platforms",
+  },
+};
+
 const platforms = [
   {
     name: "YouTube",
