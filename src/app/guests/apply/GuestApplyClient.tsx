@@ -2,14 +2,6 @@
 
 import { useState } from "react";
 
-const formFields = [
-  { label: "Full name", type: "text", placeholder: "Jane Smith", required: true },
-  { label: "Email", type: "email", placeholder: "jane@company.com", required: true },
-  { label: "Company", type: "text", placeholder: "Acme Corp", required: true },
-  { label: "Title / Role", type: "text", placeholder: "Chief AI Officer", required: true },
-  { label: "LinkedIn profile URL", type: "url", placeholder: "https://linkedin.com/in/...", required: true },
-];
-
 const hearAboutOptions = [
   "YouTube",
   "LinkedIn",
@@ -21,6 +13,35 @@ const hearAboutOptions = [
 
 export default function GuestApplyClient() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xlgovyel", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch {
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   if (submitted) {
     return (
@@ -51,32 +72,78 @@ export default function GuestApplyClient() {
         You just show up and tell your story.
       </p>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setSubmitted(true);
-        }}
-        className="flex flex-col gap-5"
-      >
-        {formFields.map((field) => (
-          <div key={field.label}>
-            <label className="block text-sm font-medium text-charcoal mb-1.5">
-              {field.label} {field.required && "*"}
-            </label>
-            <input
-              type={field.type}
-              placeholder={field.placeholder}
-              required={field.required}
-              className="w-full px-3.5 py-2.5 border border-border rounded-lg text-[15px] text-charcoal bg-white outline-none transition-colors focus:border-gold"
-            />
-          </div>
-        ))}
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <div>
+          <label className="block text-sm font-medium text-charcoal mb-1.5">
+            Full name *
+          </label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Jane Smith"
+            required
+            className="w-full px-3.5 py-2.5 border border-border rounded-lg text-[15px] text-charcoal bg-white outline-none transition-colors focus:border-gold"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-charcoal mb-1.5">
+            Email *
+          </label>
+          <input
+            type="email"
+            name="email"
+            placeholder="jane@company.com"
+            required
+            className="w-full px-3.5 py-2.5 border border-border rounded-lg text-[15px] text-charcoal bg-white outline-none transition-colors focus:border-gold"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-charcoal mb-1.5">
+            Company *
+          </label>
+          <input
+            type="text"
+            name="company"
+            placeholder="Acme Corp"
+            required
+            className="w-full px-3.5 py-2.5 border border-border rounded-lg text-[15px] text-charcoal bg-white outline-none transition-colors focus:border-gold"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-charcoal mb-1.5">
+            Title / Role *
+          </label>
+          <input
+            type="text"
+            name="title"
+            placeholder="Chief AI Officer"
+            required
+            className="w-full px-3.5 py-2.5 border border-border rounded-lg text-[15px] text-charcoal bg-white outline-none transition-colors focus:border-gold"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-charcoal mb-1.5">
+            LinkedIn profile URL *
+          </label>
+          <input
+            type="url"
+            name="linkedin"
+            placeholder="https://linkedin.com/in/..."
+            required
+            className="w-full px-3.5 py-2.5 border border-border rounded-lg text-[15px] text-charcoal bg-white outline-none transition-colors focus:border-gold"
+          />
+        </div>
 
         <div>
           <label className="block text-sm font-medium text-charcoal mb-1.5">
             What AI topic would you like to discuss? *
           </label>
           <textarea
+            name="topic"
             rows={3}
             placeholder="Tell us about your AI implementation..."
             required
@@ -89,6 +156,7 @@ export default function GuestApplyClient() {
             Why would you be a great guest? *
           </label>
           <textarea
+            name="why_great_guest"
             rows={3}
             placeholder="What's your story?"
             required
@@ -100,7 +168,10 @@ export default function GuestApplyClient() {
           <label className="block text-sm font-medium text-charcoal mb-1.5">
             How did you hear about us?
           </label>
-          <select className="w-full px-3.5 py-2.5 border border-border rounded-lg text-[15px] text-charcoal bg-white outline-none transition-colors focus:border-gold">
+          <select
+            name="referral_source"
+            className="w-full px-3.5 py-2.5 border border-border rounded-lg text-[15px] text-charcoal bg-white outline-none transition-colors focus:border-gold"
+          >
             <option value="">Select...</option>
             {hearAboutOptions.map((opt) => (
               <option key={opt} value={opt}>
@@ -112,9 +183,10 @@ export default function GuestApplyClient() {
 
         <button
           type="submit"
-          className="mt-2 px-8 py-3.5 bg-gold text-white rounded-lg text-base font-semibold cursor-pointer hover:bg-gold-dark transition-colors"
+          disabled={submitting}
+          className="mt-2 px-8 py-3.5 bg-gold text-white rounded-lg text-base font-semibold cursor-pointer hover:bg-gold-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Submit Application
+          {submitting ? "Submitting..." : "Submit Application"}
         </button>
       </form>
     </div>
