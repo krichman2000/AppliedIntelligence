@@ -32,6 +32,46 @@ export const topics: Topic[] = [
 
 export const episodes: Episode[] = [
   {
+    id: 10,
+    title: "AI-Powered Growth: Scaling Content and SEO with Machine Learning",
+    guest: "Marcos Ciarrocchi",
+    guestTitle: "Co-Founder, Graphite",
+    description:
+      "Marcos Ciarrocchi, co-founder of Graphite, joins Keith Richman to discuss how AI is reshaping organic growth, search, and brand discovery. In this episode of Applied Intelligence, Marcos explores the shift from traditional SEO to answer-engine optimization, and how companies can use data, experimentation, and AI-powered growth systems to show up where customers now make decisions.",
+    duration: "45:12",
+    date: "May 6, 2026",
+    topics: ["AI Strategy", "AI at Work"],
+    featured: true,
+    photo: "/guests/Marco.png",
+    youtubeId: "4KN-QYW8jw8",
+  },
+  {
+    id: 9,
+    title: "AI for the Physical World: Transforming Fleet Operations with IoT",
+    guest: "Praveen Murugesan",
+    guestTitle: "VP Engineering, Samsara",
+    description:
+      "Praveen Murugesan, VP Engineering at Samsara, joins Keith Richman to discuss how AI is moving from software demos into the physical world. In this episode of Applied Intelligence, Praveen shares how Samsara turns massive streams of IoT, video, vehicle, and sensor data into automation and insight for real-world operations—from safer fleets to smarter frontline workflows.",
+    duration: "48:30",
+    date: "Apr 29, 2026",
+    topics: ["AI Infrastructure", "AI Strategy"],
+    photo: "/guests/Praveen.png",
+    youtubeId: "TCTxnTpQZ8M",
+  },
+  {
+    id: 8,
+    title: "Mastering AI Evals: Building Trustworthy AI Products",
+    guest: "Hamel Husain",
+    guestTitle: "AI Evals Expert, Parlance Labs",
+    description:
+      "Hamel Husain, a machine learning engineer and leading voice on AI evaluations, joins Keith Richman to discuss how teams can build AI products that actually work in production. In this episode of Applied Intelligence, Hamel explains why evals, error analysis, and data-driven debugging are becoming essential skills for anyone shipping reliable AI systems.",
+    duration: "52:15",
+    date: "Apr 22, 2026",
+    topics: ["AI Strategy", "AI at Work"],
+    photo: "/guests/Hamel.png",
+    youtubeId: "uwo1jRHgaoQ",
+  },
+  {
     id: 7,
     title: "Employees as Air Traffic Controllers: Rethinking Work in the AI Era",
     guest: "Sergio Furio",
@@ -41,7 +81,6 @@ export const episodes: Episode[] = [
     duration: "34:24",
     date: "Apr 8, 2026",
     topics: ["AI in Finance", "AI in Lending", "AI Strategy", "AI & Jobs"],
-    featured: true,
     photo: "/guests/Sergio-Furio.jpg",
     youtubeId: "VDeyqsO_sgs",
   },
