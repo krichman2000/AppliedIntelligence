@@ -32,6 +32,46 @@ export const topics: Topic[] = [
 
 export const episodes: Episode[] = [
   {
+    id: 13,
+    title: "Invisible Failures: Making the Human-AI Interaction Observable",
+    guest: "Moritz Sudhof",
+    guestTitle: "Co-Founder & CEO, Bigspin",
+    description:
+      "Moritz Sudhof, co-founder and CEO of Bigspin, joins Keith Richman to discuss why most AI failures leave no trace — no crash, no error, no complaint — and why companies can't fix what they can't see. In this episode of Applied Intelligence, Moritz explores \"invisible failures\" and \"tokenflation,\" the gap between how power users and passive users get value from AI, and how teams can build observability into the human-AI interaction to learn what \"good\" actually means for their business.",
+    duration: "47:20",
+    date: "Jul 8, 2026",
+    topics: ["AI Strategy", "AI at Work"],
+    featured: true,
+    photo: "/guests/Moritz-Sudhof.png",
+    youtubeId: "am9rfdOOGEo",
+  },
+  {
+    id: 11,
+    title: "Shadow Code: Quality Assurance in the Age of AI-Generated Code",
+    guest: "Pramin Pradeep",
+    guestTitle: "Co-Founder & CEO, BotGauge",
+    description:
+      "Pramin Pradeep, co-founder and CEO of BotGauge, joins Keith Richman to discuss what happens to software quality when AI can generate code faster than teams can test it. In this episode of Applied Intelligence, Pramin explores the rise of \"shadow code\" — untested AI-generated code that quietly ships to production — and how companies can use agentic end-to-end testing, human-in-the-loop guardrails, and smarter QA budgets to release reliably at speed.",
+    duration: "43:10",
+    date: "Jun 16, 2026",
+    topics: ["AI at Work", "AI Strategy"],
+    photo: "/guests/Pramin-Pradeep.jpg",
+    youtubeId: "BgjsU73ySJQ",
+  },
+  {
+    id: 12,
+    title: "Governing the Agentic Workforce: Identity, Trust, and Enterprise AI",
+    guest: "Joe Mayberry",
+    guestTitle: "Sr. Director, Global Agentic AI, SailPoint",
+    description:
+      "Joe Mayberry, Senior Director of Global Agentic AI at SailPoint, joins Keith Richman to discuss what it actually takes to deploy AI agents safely inside the enterprise. In this episode of Applied Intelligence, Joe explores why agents should be governed like humans — with their own identities, trust levels, and clear ownership — and how companies can work through data readiness, enablement, and governance to move from AI experimentation toward a true hybrid workforce.",
+    duration: "49:45",
+    date: "May 28, 2026",
+    topics: ["AI Strategy", "AI at Work"],
+    photo: "/guests/Joe-Mayberry.jpeg",
+    youtubeId: "a9UrkGHmOlg",
+  },
+  {
     id: 10,
     title: "AI-Powered Growth: Scaling Content and SEO with Machine Learning",
     guest: "Marcos Ciarrocchi",
@@ -41,7 +81,6 @@ export const episodes: Episode[] = [
     duration: "45:12",
     date: "May 6, 2026",
     topics: ["AI Strategy", "AI at Work"],
-    featured: true,
     photo: "/guests/Marco.png",
     youtubeId: "4KN-QYW8jw8",
   },
