@@ -7,6 +7,7 @@ const navLinks = [
   { href: "/episodes", label: "Episodes" },
   { href: "/about", label: "About" },
   { href: "/platforms", label: "Platforms" },
+  { href: "/newsletter", label: "Newsletter" },
 ];
 
 export function Nav() {
