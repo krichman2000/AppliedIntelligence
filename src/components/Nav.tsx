@@ -8,7 +8,6 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/platforms", label: "Platforms" },
   { href: "/newsletter", label: "Newsletter" },
-  { href: "/zoe", label: "zoe is awesome" },
 ];
 
 export function Nav() {
