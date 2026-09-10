@@ -32,6 +32,59 @@ export const topics: Topic[] = [
 
 export const episodes: Episode[] = [
   {
+    id: 14,
+    title: "Driving AI Adoption Across a Consumer Technology Giant",
+    guest: "Spencer Rascoff",
+    guestTitle: "CEO, Match Group",
+    description:
+      "Spencer Rascoff, CEO of Match Group and co-founder of Zillow, joins Keith Richman to discuss what it actually takes to drive AI adoption across a large consumer technology company. In this episode of Applied Intelligence, Spencer shares how Match Group is putting tools like Claude and Cursor into employees' hands, restructuring teams to move faster, applying AI across engineering and marketing, and building new product experiences while navigating legacy technology, rising costs, and consumer skepticism around AI.",
+    duration: "40:01",
+    date: "Aug 31, 2026",
+    topics: ["AI Strategy", "AI at Work"],
+    featured: true,
+    photo: "/guests/Rascoff.png",
+    youtubeId: "u2XzYT4j4kQ",
+  },
+  {
+    id: 15,
+    title: "Reinventing the Creator Economy with AI Agents",
+    guest: "Eric Dahan",
+    guestTitle: "Founder, Mighty Joy & Superdeal",
+    description:
+      "Eric Dahan, founder of Mighty Joy and Superdeal and former CEO of Open Influence, joins Keith Richman to discuss how AI is reshaping the creator economy from the ground up. In this episode of Applied Intelligence, Eric explores why micro-influencers are becoming more valuable, how AI agents can automate sourcing, outreach, negotiations, and contracts, and what happens when brands begin working with both human and AI-generated creators at scale.",
+    duration: "36:29",
+    date: "Aug 21, 2026",
+    topics: ["AI Strategy", "AI at Work"],
+    photo: "/guests/Dahan.png",
+    youtubeId: "WQdiv_Qf0nw",
+  },
+  {
+    id: 16,
+    title: "Behavioral Guardrails: Securing Data as AI Outpaces Governance",
+    guest: "Yagub Rahimov",
+    guestTitle: "Founder & CEO, Polygraf AI",
+    description:
+      "Yagub Rahimov, founder and CEO of Polygraf AI, joins Keith Richman to discuss the security risks companies create when AI adoption outpaces governance. In this episode of Applied Intelligence, Yagub explores how everyday tools like meeting note takers, QR codes, voice cloning, and even emojis can expose sensitive context, why traditional privacy controls are not enough for AI, and how organizations can build behavioral guardrails that protect data without getting in the way of how people actually work.",
+    duration: "25:35",
+    date: "Jul 31, 2026",
+    topics: ["AI Infrastructure", "AI Strategy"],
+    photo: "/guests/Rahimov.png",
+    youtubeId: "e2PEhsm7_bk",
+  },
+  {
+    id: 17,
+    title: "The New Attack Surface: Securing AI That Can Reason and Act",
+    guest: "David Campbell",
+    guestTitle: "Former Head of AI Security, Scale AI",
+    description:
+      "David Campbell, AI security expert and former Head of AI Security at Scale AI, joins Keith Richman to discuss how the attack surface changes when software can reason, act, and make decisions on its own. In this episode of Applied Intelligence, David breaks down prompt injection, malicious agents, shadow AI, red teaming, and the security gaps created by rapid AI adoption, while sharing practical ways companies can maintain visibility, choose the right controls, and deploy AI without creating risks they cannot see.",
+    duration: "40:12",
+    date: "Jul 21, 2026",
+    topics: ["AI Infrastructure", "AI Strategy"],
+    photo: "/guests/Campbell.png",
+    youtubeId: "fLWwaV3fZ5A",
+  },
+  {
     id: 13,
     title: "Invisible Failures: Making the Human-AI Interaction Observable",
     guest: "Moritz Sudhof",
@@ -41,7 +94,6 @@ export const episodes: Episode[] = [
     duration: "47:20",
     date: "Jul 8, 2026",
     topics: ["AI Strategy", "AI at Work"],
-    featured: true,
     photo: "/guests/Moritz-Sudhof.png",
     youtubeId: "am9rfdOOGEo",
   },
