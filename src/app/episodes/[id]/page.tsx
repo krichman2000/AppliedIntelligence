@@ -53,9 +53,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: episodeDescription(episode),
     type: "article",
     publishedTime: parseEpisodeDate(episode.date).toISOString(),
-    image: episode.photo
-      ? { url: episode.photo, width: 400, height: 400, alt: episode.guest }
-      : undefined,
+    image: {
+      url: `/episodes/${episode.id}/opengraph-image`,
+      alt: `${episode.guest} on ${SITE_NAME}`,
+    },
   });
 }
 
@@ -63,7 +64,10 @@ function buildEpisodeJsonLd(episode: Episode) {
   const url = episodeUrl(episode.id);
   const published = parseEpisodeDate(episode.date);
   const description = episodeDescription(episode);
-  const image = episode.photo ? absoluteUrl(episode.photo) : undefined;
+  const image = [
+    absoluteUrl(`/episodes/${episode.id}/opengraph-image`),
+    ...(episode.photo ? [absoluteUrl(episode.photo)] : []),
+  ];
 
   return {
     "@context": "https://schema.org",

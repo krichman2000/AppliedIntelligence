@@ -42,9 +42,12 @@ export function episodeUrl(id: number | string): string {
   return absoluteUrl(`/episodes/${id}`);
 }
 
-/** Site-wide fallback social image. */
+/**
+ * Site-wide social image, generated at build time by src/app/opengraph-image.tsx.
+ * Episode pages get their own via src/app/episodes/[id]/opengraph-image.tsx.
+ */
 export const DEFAULT_OG_IMAGE = {
-  url: absoluteUrl("/og-image.png"),
+  url: absoluteUrl("/opengraph-image"),
   width: 1200,
   height: 630,
   alt: "Applied Intelligence Podcast",

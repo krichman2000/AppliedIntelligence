@@ -16,7 +16,11 @@ export type PageMetadataInput = {
   /** Optional shorter description for social cards; defaults to `description`. */
   socialDescription?: string;
   type?: "website" | "article";
-  /** Page-specific social image (relative or absolute). Falls back to the site image. */
+  /**
+   * Social image for this page (relative or absolute). Defaults to the
+   * site-wide generated image. Pages whose segment has its own
+   * opengraph-image file get that file's (hashed) URL instead at render time.
+   */
   image?: OgImage;
   publishedTime?: string;
 };
@@ -25,12 +29,16 @@ export type PageMetadataInput = {
  * Build a complete, self-canonicalizing Metadata object for a page.
  * All URLs (canonical, og:url, og:image, twitter:image) are absolute and
  * derived from SITE_URL.
+ *
+ * Note: Next merges metadata shallowly, so a page that defines `openGraph`
+ * replaces the root segment's file-based image. That is why the image is set
+ * explicitly here rather than relying on app/opengraph-image.tsx alone.
  */
 export function buildPageMetadata(input: PageMetadataInput): Metadata {
   const url = absoluteUrl(input.path);
   const socialDescription = input.socialDescription ?? input.description;
   const image: OgImage = input.image
-    ? { ...input.image, url: absoluteUrl(input.image.url) }
+    ? { ...DEFAULT_OG_IMAGE, ...input.image, url: absoluteUrl(input.image.url) }
     : DEFAULT_OG_IMAGE;
 
   return {
