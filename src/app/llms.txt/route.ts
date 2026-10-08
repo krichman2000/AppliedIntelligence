@@ -1,5 +1,10 @@
-# Applied Intelligence Podcast
-# https://appliedintelligence.fm
+import { SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
+
+export const dynamic = "force-static";
+
+export function GET() {
+  const body = `# ${SITE_NAME} Podcast
+# ${SITE_URL}
 
 ## About
 Applied Intelligence is a podcast about what happens when senior leaders actually try to implement AI in their organizations. Not the hype, not the theory — the real stories of what works, what doesn't, and what keeps them up at night.
@@ -32,4 +37,13 @@ Each episode features an in-depth conversation with a Fortune 500 executive, Chi
 - Apple Podcasts
 
 ## Contact
-For guest inquiries, visit: https://appliedintelligence.fm/guests/apply
+For guest inquiries, visit: ${absoluteUrl("/guests/apply")}
+`;
+
+  return new Response(body, {
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, max-age=3600, s-maxage=86400",
+    },
+  });
+}

@@ -1,28 +1,16 @@
 import { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import Image from "next/image";
 import { episodes } from "@/data/episodes";
 
 export const metadata: Metadata = {
-  title: "Guests | Applied Intelligence",
-  description:
-    "Meet the leaders building the future of AI. Browse all guests who have appeared on Applied Intelligence podcast.",
-  openGraph: {
+  ...buildPageMetadata({
+    path: "/guests",
     title: "Guests | Applied Intelligence",
     description:
       "Meet the leaders building the future of AI. Browse all guests who have appeared on Applied Intelligence podcast.",
-    url: "https://appliedintelligence.fm/guests",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Guests | Applied Intelligence",
-    description:
-      "Meet the leaders building the future of AI. Browse all guests who have appeared on Applied Intelligence podcast.",
-  },
-  alternates: {
-    canonical: "/guests",
-  },
+  }),
 };
 
 export default function GuestsPage() {

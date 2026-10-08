@@ -4,6 +4,26 @@ import { episodes, getTopicByName } from "@/data/episodes";
 import { notFound } from "next/navigation";
 import { TranscriptSection } from "@/components/TranscriptSection";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
+import { JsonLd } from "@/components/JsonLd";
+import { buildPageMetadata } from "@/lib/metadata";
+import {
+  SITE_AUTHOR,
+  SITE_NAME,
+  SITE_URL,
+  absoluteUrl,
+  episodeUrl,
+  parseEpisodeDate,
+  toIsoDate,
+  toIsoDuration,
+} from "@/lib/site";
+import type { Episode } from "@/data/episodes";
+
+function episodeDescription(episode: Episode): string {
+  return (
+    episode.description ||
+    `${episode.guest}, ${episode.guestTitle}, joins Applied Intelligence to discuss ${episode.title.toLowerCase()}.`
+  );
+}
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -26,35 +46,66 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const title = `${episode.guest} on ${episode.title} | Applied Intelligence`;
-  const description =
-    episode.description ||
-    `${episode.guest}, ${episode.guestTitle}, joins Applied Intelligence to discuss ${episode.title.toLowerCase()}.`;
+
+  return buildPageMetadata({
+    path: `/episodes/${episode.id}`,
+    title,
+    description: episodeDescription(episode),
+    type: "article",
+    publishedTime: parseEpisodeDate(episode.date).toISOString(),
+    image: episode.photo
+      ? { url: episode.photo, width: 400, height: 400, alt: episode.guest }
+      : undefined,
+  });
+}
+
+function buildEpisodeJsonLd(episode: Episode) {
+  const url = episodeUrl(episode.id);
+  const published = parseEpisodeDate(episode.date);
+  const description = episodeDescription(episode);
+  const image = episode.photo ? absoluteUrl(episode.photo) : undefined;
 
   return {
-    title,
+    "@context": "https://schema.org",
+    "@type": "PodcastEpisode",
+    "@id": url,
+    url,
+    name: episode.title,
     description,
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      url: `https://appliedintelligence.fm/episodes/${episode.id}`,
-      images: episode.photo
-        ? [
-            {
-              url: episode.photo,
-              width: 400,
-              height: 400,
-              alt: episode.guest,
-            },
-          ]
-        : undefined,
+    datePublished: toIsoDate(published),
+    episodeNumber: episode.id,
+    timeRequired: toIsoDuration(episode.duration),
+    image,
+    inLanguage: "en-US",
+    author: {
+      "@type": "Person",
+      name: SITE_AUTHOR,
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: episode.photo ? [episode.photo] : undefined,
+    actor: {
+      "@type": "Person",
+      name: episode.guest,
+      jobTitle: episode.guestTitle,
     },
+    partOfSeries: {
+      "@type": "PodcastSeries",
+      "@id": `${SITE_URL}/#podcast`,
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    ...(episode.youtubeId
+      ? {
+          associatedMedia: {
+            "@type": "VideoObject",
+            name: `${episode.guest}: ${episode.title}`,
+            description,
+            uploadDate: toIsoDate(published),
+            duration: toIsoDuration(episode.duration),
+            thumbnailUrl: `https://i.ytimg.com/vi/${episode.youtubeId}/hqdefault.jpg`,
+            embedUrl: `https://www.youtube.com/embed/${episode.youtubeId}`,
+            contentUrl: `https://www.youtube.com/watch?v=${episode.youtubeId}`,
+          },
+        }
+      : {}),
   };
 }
 
@@ -68,6 +119,7 @@ export default async function EpisodeDetailPage({ params }: Props) {
 
   return (
     <div className="py-12">
+      <JsonLd data={buildEpisodeJsonLd(episode)} />
       <Link
         href="/episodes"
         className="inline-flex items-center gap-1.5 text-sm text-gold mb-7 hover:underline"

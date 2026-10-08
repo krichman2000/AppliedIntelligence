@@ -1,27 +1,17 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/metadata";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export const metadata: Metadata = {
-  title: "Newsletter | Applied Intelligence",
-  description:
-    "Subscribe to the Applied Intelligence newsletter — new episodes and short, practical notes on what actually works when implementing AI in organizations.",
-  openGraph: {
+  ...buildPageMetadata({
+    path: "/newsletter",
     title: "Newsletter | Applied Intelligence",
     description:
+      "Subscribe to the Applied Intelligence newsletter — new episodes and short, practical notes on what actually works when implementing AI in organizations.",
+    socialDescription:
       "New episodes and short, practical notes on what actually works when implementing AI in organizations.",
-    url: "https://appliedintelligence.fm/newsletter",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Newsletter | Applied Intelligence",
-    description:
-      "New episodes and short, practical notes on what actually works when implementing AI in organizations.",
-  },
-  alternates: {
-    canonical: "/newsletter",
-  },
+  }),
 };
 
 export default function NewsletterPage() {

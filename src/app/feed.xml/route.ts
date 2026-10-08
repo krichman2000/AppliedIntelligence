@@ -1,14 +1,39 @@
 import { episodes } from "@/data/episodes";
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_AUTHOR,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+  absoluteUrl,
+  episodeUrl,
+  parseEpisodeDate,
+} from "@/lib/site";
 
-const SITE_URL = "https://appliedintelligence.fm";
-const PODCAST_TITLE = "Applied Intelligence";
-const PODCAST_DESCRIPTION =
-  "Conversations with Fortune 500 executives, Chief AI Officers, and AI company founders about what actually works when implementing AI in organizations.";
-const PODCAST_AUTHOR = "Keith Richman";
-const PODCAST_EMAIL = "hello@appliedintelligence.fm";
-const PODCAST_IMAGE = `${SITE_URL}/og-image.png`;
+const PODCAST_TITLE = SITE_NAME;
+const PODCAST_DESCRIPTION = SITE_DESCRIPTION;
+const PODCAST_AUTHOR = SITE_AUTHOR;
+const PODCAST_EMAIL = process.env.PODCAST_EMAIL || "iamkeithr@gmail.com";
+const PODCAST_IMAGE = DEFAULT_OG_IMAGE.url;
 const PODCAST_LANGUAGE = "en-us";
 const PODCAST_CATEGORIES = ["Technology", "Business", "Entrepreneurship"];
+
+/**
+ * Episodes 1–17 were first published to the feed while the site lived on
+ * appliedintelligence.fm, and their GUIDs were minted as permalinks on that
+ * domain. Podcast apps dedupe episodes by GUID string, so those GUIDs must
+ * never change even though the old domain no longer resolves. Newer episodes
+ * use their permalink on the current domain.
+ */
+const LEGACY_GUID_MAX_ID = 17;
+const LEGACY_GUID_BASE = "https://appliedintelligence.fm/episodes/";
+
+function episodeGuid(id: number): { value: string; isPermaLink: boolean } {
+  if (id <= LEGACY_GUID_MAX_ID) {
+    return { value: `${LEGACY_GUID_BASE}${id}`, isPermaLink: false };
+  }
+  return { value: episodeUrl(id), isPermaLink: true };
+}
 
 function escapeXml(text: string): string {
   return text
@@ -20,8 +45,8 @@ function escapeXml(text: string): string {
 }
 
 function parseDate(dateStr: string): Date {
-  // Parse dates like "Mar 24, 2026"
-  return new Date(dateStr);
+  // Parse dates like "Mar 24, 2026" as UTC
+  return parseEpisodeDate(dateStr);
 }
 
 function formatRfc822Date(date: Date): string {
@@ -45,19 +70,16 @@ export async function GET() {
   const items = sortedEpisodes
     .map((episode) => {
       const pubDate = formatRfc822Date(parseDate(episode.date));
-      const episodeUrl = `${SITE_URL}/episodes/${episode.id}`;
+      const url = episodeUrl(episode.id);
+      const guid = episodeGuid(episode.id);
       const description = episode.description || `${episode.guest}, ${episode.guestTitle}, discusses ${episode.title.toLowerCase()}.`;
-      const imageUrl = episode.photo
-        ? episode.photo.startsWith("http")
-          ? episode.photo
-          : `${SITE_URL}${episode.photo}`
-        : PODCAST_IMAGE;
+      const imageUrl = episode.photo ? absoluteUrl(episode.photo) : PODCAST_IMAGE;
 
       return `
     <item>
       <title>${escapeXml(`${episode.guest}: ${episode.title}`)}</title>
-      <link>${episodeUrl}</link>
-      <guid isPermaLink="true">${episodeUrl}</guid>
+      <link>${url}</link>
+      <guid isPermaLink="${guid.isPermaLink}">${guid.value}</guid>
       <pubDate>${pubDate}</pubDate>
       <description><![CDATA[${description}]]></description>
       <itunes:author>${escapeXml(episode.guest)}</itunes:author>
@@ -85,7 +107,7 @@ export async function GET() {
     <language>${PODCAST_LANGUAGE}</language>
     <copyright>Copyright ${new Date().getFullYear()} ${escapeXml(PODCAST_AUTHOR)}</copyright>
     <description><![CDATA[${PODCAST_DESCRIPTION}]]></description>
-    <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="${absoluteUrl("/feed.xml")}" rel="self" type="application/rss+xml" />
     <itunes:author>${escapeXml(PODCAST_AUTHOR)}</itunes:author>
     <itunes:summary><![CDATA[${PODCAST_DESCRIPTION}]]></itunes:summary>
     <itunes:type>episodic</itunes:type>

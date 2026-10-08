@@ -1,3 +1,5 @@
+import { SITE_HOST } from "@/lib/site";
+
 const BEEHIIV_API = "https://api.beehiiv.com/v2";
 
 // Simple, permissive email sanity check — beehiiv does the authoritative validation.
@@ -46,9 +48,9 @@ export async function POST(request: Request) {
           email,
           reactivate_existing: true,
           send_welcome_email: true,
-          utm_source: "appliedintelligence.fm",
+          utm_source: SITE_HOST,
           utm_medium: "website",
-          referring_site: "appliedintelligence.fm",
+          referring_site: SITE_HOST,
         }),
       },
     );

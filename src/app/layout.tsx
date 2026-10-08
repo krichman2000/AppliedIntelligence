@@ -3,6 +3,16 @@ import { Libre_Baskerville, DM_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
+import { JsonLd } from "@/components/JsonLd";
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_AUTHOR,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_URL,
+  absoluteUrl,
+} from "@/lib/site";
 
 const libreBaskerville = Libre_Baskerville({
   variable: "--font-libre-baskerville",
@@ -17,9 +27,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Applied Intelligence | AI Podcast",
-  description:
-    "Conversations with Fortune 500 executives, Chief AI Officers, and AI company founders about what actually works when implementing AI in organizations.",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   keywords: [
     "AI podcast",
     "artificial intelligence",
@@ -28,39 +37,31 @@ export const metadata: Metadata = {
     "AI leadership",
     "technology podcast",
   ],
-  authors: [{ name: "Keith Richman" }],
-  creator: "Keith Richman",
-  publisher: "Applied Intelligence",
-  metadataBase: new URL("https://appliedintelligence.fm"),
+  authors: [{ name: SITE_AUTHOR }],
+  creator: SITE_AUTHOR,
+  publisher: SITE_NAME,
+  metadataBase: new URL(SITE_URL),
+  // No canonical here on purpose: every page sets its own via buildPageMetadata,
+  // so nothing can silently inherit the homepage canonical.
   alternates: {
-    canonical: "/",
     types: {
-      "application/rss+xml": "/feed.xml",
+      "application/rss+xml": absoluteUrl("/feed.xml"),
     },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://appliedintelligence.fm",
-    siteName: "Applied Intelligence",
-    title: "Applied Intelligence | AI Podcast",
-    description:
-      "Conversations with Fortune 500 executives, Chief AI Officers, and AI company founders about what actually works when implementing AI in organizations.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Applied Intelligence Podcast",
-      },
-    ],
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Applied Intelligence | AI Podcast",
-    description:
-      "Conversations with Fortune 500 executives, Chief AI Officers, and AI company founders about what actually works when implementing AI in organizations.",
-    images: ["/og-image.png"],
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE.url],
   },
   robots: {
     index: true,
@@ -81,18 +82,20 @@ export const metadata: Metadata = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "PodcastSeries",
-  name: "Applied Intelligence",
-  description:
-    "Conversations with Fortune 500 executives, Chief AI Officers, and AI company founders about what actually works when implementing AI in organizations.",
-  url: "https://appliedintelligence.fm",
+  "@id": `${SITE_URL}/#podcast`,
+  name: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  url: SITE_URL,
+  webFeed: absoluteUrl("/feed.xml"),
+  image: DEFAULT_OG_IMAGE.url,
   author: {
     "@type": "Person",
-    name: "Keith Richman",
+    name: SITE_AUTHOR,
   },
   publisher: {
     "@type": "Organization",
-    name: "Applied Intelligence",
-    url: "https://appliedintelligence.fm",
+    name: SITE_NAME,
+    url: SITE_URL,
   },
   inLanguage: "en-US",
   genre: ["Technology", "Business", "Artificial Intelligence"],
@@ -121,10 +124,7 @@ export default function RootLayout({
             gtag('config', 'G-6294YVZJQG');
           `}
         </Script>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <JsonLd data={structuredData} />
       </head>
       <body className="bg-cream min-h-screen">
         <div className="max-w-[800px] mx-auto px-6">
